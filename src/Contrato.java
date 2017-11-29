@@ -20,8 +20,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
-import java.util.Map;
 import javax.swing.JOptionPane;
+import com.cloudinary.*;
+
+import com.cloudinary.utils.ObjectUtils;
+import java.io.File;
+import java.util.Map;
 
 
 public class Contrato extends javax.swing.JFrame {
@@ -455,8 +459,24 @@ public class Contrato extends javax.swing.JFrame {
             doc.add(new Paragraph(jLabel25.getText().toString()+"                                      "+jLabel26.getText().toString()));
 
             doc.close();
-            
+         //PRUEBA CLODINARY   
           JOptionPane.showMessageDialog(null, "CONTRATO GENERADO");
+          Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
+             "cloud_name", "dcjlyyzyj",
+             "api_key", "773555693615963",
+             "api_secret", "Spm9vtyl8l_5yhC5cFkxpAyelxA"));
+          
+          String contratoUpload = "Contrato1b8kkcqghh.pdf";
+          Map uploadResult = cloudinary.uploader().upload(contratoUpload, ObjectUtils.emptyMap());
+          System.out.println(uploadResult.toString());
+          //MOSTRAR EL DOCUMENTO GENERADO DE FORMA LOCAL TEST MI PC
+          try{
+              
+              Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler "+"C:\\Users\\Ramirez\\Desktop\\Git\\OnTourEscritorio\\Contrato"+id+".pdf");
+          }catch(Exception e)
+          {
+              e.printStackTrace();
+          }
           
         }catch(Exception e)
         {
