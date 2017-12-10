@@ -16,6 +16,7 @@ import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import javax.swing.table.DefaultTableModel;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 
 
 
@@ -419,9 +420,12 @@ public class MantenedorCurso extends javax.swing.JFrame {
         try
         {
             c = ca.agregarCurso(cuenta_id, escuela_id, destino_id, monto_meta,nivel,anio,fecha_viaje);
+            JOptionPane.showMessageDialog(null, "Datos Ingresado Exitosamente");
         }catch(Exception e)
         {
+            String msj = ExceptionUtils.getStackTrace(e);
             e.printStackTrace();
+            JOptionPane.showMessageDialog(null, msj);
         }
     }//GEN-LAST:event_btnIngresarActionPerformed
 

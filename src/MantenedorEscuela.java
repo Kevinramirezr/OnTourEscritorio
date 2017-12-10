@@ -10,6 +10,7 @@ import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import Clases.Regiones;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -283,14 +284,12 @@ public class MantenedorEscuela extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 451, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -311,7 +310,9 @@ public class MantenedorEscuela extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"ID Nueva Escuela:"+es.getEscuela_id());
         }catch(Exception e)
         {
+            String msj = ExceptionUtils.getStackTrace(e);
             e.printStackTrace();
+            JOptionPane.showMessageDialog(null, msj);
         } 
     }//GEN-LAST:event_btnIngresarActionPerformed
 

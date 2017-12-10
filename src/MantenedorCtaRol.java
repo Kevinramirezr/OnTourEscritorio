@@ -5,6 +5,7 @@ import Clases.Curso;
 import java.sql.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 /**
  *
  * @author Pixie
@@ -284,6 +285,8 @@ public class MantenedorCtaRol extends javax.swing.JFrame {
              
      }catch(Exception e)
      {
+         String msj = ExceptionUtils.getStackTrace(e);
+         JOptionPane.showMessageDialog(null, msj);
          e.printStackTrace();
      }
     }//GEN-LAST:event_btnIngresarActionPerformed
@@ -349,6 +352,8 @@ public class MantenedorCtaRol extends javax.swing.JFrame {
            conn.close();
         }catch(Exception e)
         {
+            String msj = ExceptionUtils.getStackTrace(e);
+            JOptionPane.showMessageDialog(null, msj);
             JOptionPane.showMessageDialog(null,e);
         }
     }//GEN-LAST:event_btnEliminarActionPerformed

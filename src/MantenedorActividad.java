@@ -11,11 +11,6 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.table.DefaultTableModel;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
  *
@@ -274,7 +269,7 @@ public class MantenedorActividad extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEliminarBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarBuscarActionPerformed
-        // TODO add your handling code here:
+      
         //API
         DefaultTableModel modelo = new DefaultTableModel();
         
@@ -337,7 +332,7 @@ public class MantenedorActividad extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void cboEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboEliminarMouseClicked
-        // TODO add your handling code here:
+        
         try{
             DriverManager.registerDriver(new oracle.jdbc.OracleDriver());
             Connection conn= DriverManager.getConnection("jdbc:oracle:thin:@165.227.213.232:1521:dbportafolio","C##_equipo2","portafolio02");
@@ -356,14 +351,14 @@ public class MantenedorActividad extends javax.swing.JFrame {
     }//GEN-LAST:event_cboEliminarMouseClicked
 
     private void btn_AtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AtrasActionPerformed
-        // TODO add your handling code here:
+    
         this.setVisible(false);
         new LoginAdmin().setVisible(true);
     }//GEN-LAST:event_btn_AtrasActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         System.exit(0);
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
@@ -380,6 +375,7 @@ public class MantenedorActividad extends javax.swing.JFrame {
             e.printStackTrace();
         }
 
+        //DESDE LA BD CON PAQUETES    
         /*
         try {
             DriverManager.registerDriver(new oracle.jdbc.OracleDriver());
@@ -420,7 +416,7 @@ public class MantenedorActividad extends javax.swing.JFrame {
     }//GEN-LAST:event_cboConsultarMouseClicked
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
-       
+       //API
          DefaultTableModel modelo = new DefaultTableModel();
          Actividad actividades = null;
          ConnectAPI cap = new ConnectAPI();
@@ -434,6 +430,7 @@ public class MantenedorActividad extends javax.swing.JFrame {
          {
              e.printStackTrace();
          }
+         //BD PAQUETES
         /*try{
            String actividad_id = cboConsultar.getSelectedItem().toString().trim();
            DriverManager.registerDriver(new oracle.jdbc.OracleDriver());

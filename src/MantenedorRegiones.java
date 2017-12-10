@@ -7,12 +7,9 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
 /**
  *
@@ -309,9 +306,9 @@ public class MantenedorRegiones extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPosActionPerformed
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        // TODO add your handling code here:
+     
          try {
-        //Class.forName("oracle:jdbc.driver.OracleDriver");
+        
         DriverManager.registerDriver(new oracle.jdbc.OracleDriver());
         Connection conn= DriverManager.getConnection("jdbc:oracle:thin:@165.227.213.232:1521:dbportafolio","C##_equipo2","portafolio02");
         //Inserción de datos a bd SIN PAQUETES           
@@ -328,7 +325,9 @@ public class MantenedorRegiones extends javax.swing.JFrame {
 
         ps.close();
     } catch (Exception e) {
-        JOptionPane.showMessageDialog(null, e);
+        String msj = ExceptionUtils.getStackTrace(e);
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(null, msj);
     }
         
         
@@ -365,9 +364,12 @@ public class MantenedorRegiones extends javax.swing.JFrame {
             Connection conn= DriverManager.getConnection("jdbc:oracle:thin:@165.227.213.232:1521:dbportafolio","C##_equipo2","portafolio02");
             Statement sent = conn.createStatement();
             ResultSet rs = sent.executeQuery("Delete from region where region_id='"+region_id+"'");
+            JOptionPane.showMessageDialog(null, "Datos Eliminados Exitosamente");
             conn.close();
         }catch(Exception e)
         {
+            String msj = ExceptionUtils.getStackTrace(e);
+            JOptionPane.showMessageDialog(null, msj);
             e.printStackTrace();
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
