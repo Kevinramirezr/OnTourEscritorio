@@ -626,6 +626,33 @@ public class ConnectAPI {
        return curso;
     }
      
+     public Boolean RegistrarContrato(String curso_id, String contrato_ruta)
+     {
+          Gson g = new Gson();
+          Curso curso = null;
+          String url="https://thawing-forest-71712.herokuapp.com/api/cursos/"+curso_id+"/contrato";
+          String urlParameters="contrato_ruta="+contrato_ruta;
+          String method = "PUT";
+       
+          String response = null;
+          
+         try
+            {
+                response = Peticion(url, urlParameters, method);
+                if(response.equalsIgnoreCase("true")){
+                    return true;
+                }else{
+                     return false;
+                }
+            
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        
+        return false;
+     }
+     
      
      
      

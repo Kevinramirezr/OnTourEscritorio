@@ -20,8 +20,9 @@ public class Curso {
     private String anio;
     private String monto_meta;
     private String fecha_viaje;
+    private String curso_ruta;
 
-    public Curso(String curso_id, String nivel, String cuenta_id, String escuela_id, String destino_id, String monto_meta, String fecha_viaje,String anio) {
+    public Curso(String curso_id, String nivel, String cuenta_id, String escuela_id, String destino_id, String monto_meta, String fecha_viaje,String anio,String curso_ruta) {
         this.curso_id = curso_id;
         this.nivel = nivel;
         this.cuenta_id = cuenta_id;
@@ -30,6 +31,15 @@ public class Curso {
         this.monto_meta = monto_meta;
         this.fecha_viaje = fecha_viaje;
         this.anio = anio;
+        this.curso_ruta = curso_ruta;
+    }
+
+    public String getCurso_ruta() {
+        return curso_ruta;
+    }
+
+    public void setCurso_ruta(String curso_ruta) {
+        this.curso_ruta = curso_ruta;
     }
 
     public String getAnio() {
