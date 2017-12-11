@@ -25,6 +25,7 @@ import javax.swing.JOptionPane;
 import com.cloudinary.*;
 
 import com.cloudinary.utils.ObjectUtils;
+import java.awt.Desktop;
 import java.io.File;
 import java.net.URL;
 import java.net.URLConnection;
@@ -467,7 +468,7 @@ public class Contrato extends javax.swing.JFrame {
              "api_key", "773555693615963",
              "api_secret", "Spm9vtyl8l_5yhC5cFkxpAyelxA"));
           
-          String contratoUpload = "Contrato1b8kkcqghh.pdf";
+          String contratoUpload ="Contrato"+id+".pdf";
           Map uploadResult = cloudinary.uploader().upload(contratoUpload, ObjectUtils.emptyMap());
           String url = "";
           System.out.println(uploadResult.toString());
@@ -494,16 +495,14 @@ public class Contrato extends javax.swing.JFrame {
            }catch(Exception e){
                e.printStackTrace();
            }
-          //MOSTRAR EL DOCUMENTO GENERADO DE FORMA LOCAL TEST MI PC
-         /* try{
-              Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler "+"C:\\Users\\Ramirez\\Desktop\\Git\\OnTourEscritorio\\Contrato"+id+".pdf");
-          }catch(Exception e)
-          {
-              e.printStackTrace();
-          }*/
-          
+        
           //MOSTRAR EL DOCUMENTO GENERADO DESDE LA URL RESCATADA
-           
+           try {
+                    Desktop.getDesktop().browse(new URL(url).toURI());
+                  } catch (Exception e) 
+                  {
+                      e.printStackTrace();
+                  }
           
         }catch(Exception e) {
             e.printStackTrace();
@@ -512,15 +511,14 @@ public class Contrato extends javax.swing.JFrame {
 
     private void cbonombreCursoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbonombreCursoMouseClicked
         try{
+            int count=0;
             DriverManager.registerDriver(new oracle.jdbc.OracleDriver());
             Connection conn= DriverManager.getConnection("jdbc:oracle:thin:@165.227.213.232:1521:dbportafolio","C##_equipo2","portafolio02");
             Statement sent = conn.createStatement();
             ResultSet rs = sent.executeQuery("Select curso_id from curso");
             while(rs.next())
             {
-
-                this.cbonombreCurso.addItem(rs.getString("curso_id"));
-
+                    this.cbonombreCurso.addItem(rs.getString("curso_id"));
             }
             conn.close();
         }catch (Exception e) {
@@ -529,34 +527,47 @@ public class Contrato extends javax.swing.JFrame {
     }//GEN-LAST:event_cbonombreCursoMouseClicked
 
     private void btnFillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFillActionPerformed
-              
+              int count = 0;
             try{
             String curso_id = cbonombreCurso.getSelectedItem().toString().toLowerCase();
             DriverManager.registerDriver(new oracle.jdbc.OracleDriver());
             Connection conn= DriverManager.getConnection("jdbc:oracle:thin:@165.227.213.232:1521:dbportafolio","C##_equipo2","portafolio02");
             Statement sent = conn.createStatement();
-            ResultSet rs1 = sent.executeQuery("Select nivel from curso where curso_id='"+curso_id+"'");
-            while(rs1.next()){this.txtCurso.setText(rs1.getString("nivel"));}
-            ResultSet rs2 = sent.executeQuery("Select e.nombre from escuela e join curso cu on e.escuela_id = cu.escuela_id where cu.curso_id ='"+curso_id+"'");
-            while(rs2.next()){this.txtEscuela.setText(rs2.getString("nombre"));}
-            ResultSet rs3 = sent.executeQuery("Select e.ciudad from escuela e join curso cu on e.escuela_id = cu.escuela_id where cu.curso_id='"+curso_id+"'");
-            while(rs3.next()){this.txtUbicado.setText(rs3.getString("ciudad"));}
-             ResultSet rs4 = sent.executeQuery("Select cue.nombre from cuenta cue join curso cu on cue.cuenta_id= cu.cuenta_id  where cu.curso_id='"+curso_id+"'");
-            while(rs4.next()){this.txtRepCursoN.setText(rs4.getString("nombre"));}
-            ResultSet rs5 = sent.executeQuery("Select de.nombre from destino de join curso cu on de.destino_id = cu.destino_id where cu.curso_id='"+curso_id+"'");
-            while(rs5.next()){this.txtDestino.setText(rs5.getString("nombre"));}
-            ResultSet rs6 = sent.executeQuery("Select fecha_viaje from curso where curso_id='"+curso_id+"'");
-            while(rs6.next()){this.txtFecha.setText(rs6.getString("fecha_viaje"));}
-            ResultSet rs7 = sent.executeQuery("Select cue.rut from cuenta cue join curso cu on cue.cuenta_id= cu.cuenta_id  where cu.curso_id='"+curso_id+"'");
-            while(rs7.next()){this.txtrutRep.setText(rs7.getString("rut"));}
-            ResultSet rs8 = sent.executeQuery("Select cue.apellido_p from cuenta cue join curso cu on cue.cuenta_id= cu.cuenta_id  where cu.curso_id='"+curso_id+"'");
-            while(rs8.next()){this.txtRepCursoAP.setText(rs8.getString("apellido_p"));}
-            ResultSet rs9 = sent.executeQuery("Select cue.apellido_m from cuenta cue join curso cu on cue.cuenta_id= cu.cuenta_id  where cu.curso_id='"+curso_id+"'");
-            while(rs9.next()){this.txtRepCursoAM.setText(rs9.getString("apellido_m"));}
-             ResultSet rs10 = sent.executeQuery("select monto_meta from curso where curso_id ='"+curso_id+"'");
-            while(rs10.next()){this.txtMont.setText(rs10.getString("monto_meta"));}
+            ResultSet rs11= sent.executeQuery("Select count(alumno_id) AS "+"total"+" from alumno where curso_id='"+curso_id+"'");
+            while(rs11.next())
+            {
+                count = rs11.getInt("total");
+                        
+            }
+                System.out.println(count);
+            if(count>=15)
+            {
+                ResultSet rs1 = sent.executeQuery("Select nivel from curso where curso_id='"+curso_id+"'");
+                 while(rs1.next()){this.txtCurso.setText(rs1.getString("nivel"));}
+                 ResultSet rs2 = sent.executeQuery("Select e.nombre from escuela e join curso cu on e.escuela_id = cu.escuela_id where cu.curso_id ='"+curso_id+"'");
+                 while(rs2.next()){this.txtEscuela.setText(rs2.getString("nombre"));}
+                  ResultSet rs3 = sent.executeQuery("Select e.ciudad from escuela e join curso cu on e.escuela_id = cu.escuela_id where cu.curso_id='"+curso_id+"'");
+                 while(rs3.next()){this.txtUbicado.setText(rs3.getString("ciudad"));}
+                  ResultSet rs4 = sent.executeQuery("Select cue.nombre from cuenta cue join curso cu on cue.cuenta_id= cu.cuenta_id  where cu.curso_id='"+curso_id+"'");
+                  while(rs4.next()){this.txtRepCursoN.setText(rs4.getString("nombre"));}
+                 ResultSet rs5 = sent.executeQuery("Select de.nombre from destino de join curso cu on de.destino_id = cu.destino_id where cu.curso_id='"+curso_id+"'");
+                 while(rs5.next()){this.txtDestino.setText(rs5.getString("nombre"));}
+                 ResultSet rs6 = sent.executeQuery("Select fecha_viaje from curso where curso_id='"+curso_id+"'");
+                 while(rs6.next()){this.txtFecha.setText(rs6.getString("fecha_viaje"));}
+                  ResultSet rs7 = sent.executeQuery("Select cue.rut from cuenta cue join curso cu on cue.cuenta_id= cu.cuenta_id  where cu.curso_id='"+curso_id+"'");
+                  while(rs7.next()){this.txtrutRep.setText(rs7.getString("rut"));}
+                    ResultSet rs8 = sent.executeQuery("Select cue.apellido_p from cuenta cue join curso cu on cue.cuenta_id= cu.cuenta_id  where cu.curso_id='"+curso_id+"'");
+                    while(rs8.next()){this.txtRepCursoAP.setText(rs8.getString("apellido_p"));}
+                    ResultSet rs9 = sent.executeQuery("Select cue.apellido_m from cuenta cue join curso cu on cue.cuenta_id= cu.cuenta_id  where cu.curso_id='"+curso_id+"'");
+                    while(rs9.next()){this.txtRepCursoAM.setText(rs9.getString("apellido_m"));}
+                    ResultSet rs10 = sent.executeQuery("select monto_meta from curso where curso_id ='"+curso_id+"'");
+                    while(rs10.next()){this.txtMont.setText(rs10.getString("monto_meta"));}
+            }else
+            {
+                System.out.println("Selecione Otro curso, este no cumple copn los requisitos previos para generar Contrato");
+            }
             
-
+           
             conn.close();
             }catch(SQLException e)
             {

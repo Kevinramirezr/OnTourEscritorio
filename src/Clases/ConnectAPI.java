@@ -782,8 +782,35 @@ public class ConnectAPI {
         }
         
         return dep;
-
     }  
-       
-       
+      
+      
+      public Deposito[] depositoAlumno(String alumno_id)
+      {
+         Gson g = new Gson();
+        Deposito[] dep = null;    
+        String url = "https://thawing-forest-71712.herokuapp.com/api/alumnos/"+alumno_id+"/depositos";
+        String urlParameters= "";
+        String method = "GET";
+        
+        String response = null;
+        
+        
+        try
+        {
+            response = Peticion(url, urlParameters, method);
+            if(response != null){
+                dep = g.fromJson(response.toString(), Deposito[].class);
+            }
+            
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        
+        return dep;
+        
+      }
+      
+  
 }

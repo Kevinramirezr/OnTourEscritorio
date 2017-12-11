@@ -15,12 +15,12 @@ public class Deposito {
     private String deposito_id;
     private String cuenta_id;
     private String tipo_id;
-    private int monto;
+    private String monto;
     private String estado;
-    private Date fecha;
+    private String fecha;
     private String ruta_comprobante;
 
-    public Deposito(String deposito_id, String cuenta_id, String tipo_id, int monto, String estado, Date fecha, String ruta_comprobante) {
+    public Deposito(String deposito_id, String cuenta_id, String tipo_id, String monto, String estado, String fecha, String ruta_comprobante) {
         this.deposito_id = deposito_id;
         this.cuenta_id = cuenta_id;
         this.tipo_id = tipo_id;
@@ -54,11 +54,11 @@ public class Deposito {
         this.tipo_id = tipo_id;
     }
 
-    public int getMonto() {
+    public String getMonto() {
         return monto;
     }
 
-    public void setMonto(int monto) {
+    public void setMonto(String monto) {
         this.monto = monto;
     }
 
@@ -70,11 +70,11 @@ public class Deposito {
         this.estado = estado;
     }
 
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 
