@@ -208,7 +208,7 @@ public class MantenedorCtaRol extends javax.swing.JFrame {
         jScrollPane3.setViewportView(tablaConsultar);
 
         jPanel3.add(jScrollPane3);
-        jScrollPane3.setBounds(10, 44, 273, 102);
+        jScrollPane3.setBounds(20, 50, 273, 102);
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/mmmm.png"))); // NOI18N
         jPanel3.add(jLabel6);
@@ -263,7 +263,7 @@ public class MantenedorCtaRol extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
                 .addContainerGap())
         );
 

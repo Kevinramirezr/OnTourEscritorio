@@ -133,7 +133,7 @@ public class MantenedorDestinos extends javax.swing.JFrame {
         jScrollPane2.setViewportView(tablaEliminar);
 
         jPanel2.add(jScrollPane2);
-        jScrollPane2.setBounds(47, 76, 244, 79);
+        jScrollPane2.setBounds(60, 80, 244, 79);
 
         btnEliminarBuscar.setText("Buscar");
         btnEliminarBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -243,7 +243,7 @@ public class MantenedorDestinos extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

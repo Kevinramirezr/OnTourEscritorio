@@ -328,7 +328,7 @@ public class MantenedorCurso extends javax.swing.JFrame {
         jScrollPane3.setViewportView(tablaConsultar);
 
         jPanel3.add(jScrollPane3);
-        jScrollPane3.setBounds(10, 93, 369, 148);
+        jScrollPane3.setBounds(10, 93, 440, 250);
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/mmmm.png"))); // NOI18N
         jPanel3.add(jLabel14);
@@ -552,7 +552,7 @@ public class MantenedorCurso extends javax.swing.JFrame {
             for (int i = 0; i < curso.length; i++) {
                 System.out.println(curso[i]);
                 modelo.addRow(new Object[]{curso[i].getCurso_id().toString(),curso[i].getNivel().toString(),curso[i].getCuenta_id().toString(),curso[i].getCuenta_id().toString(),curso[i].getEscuela_id().toString(),
-                curso[i].getDestino_id().toString(),curso[i].getAnio().toString(),curso[i].getMonto_meta(),new SimpleDateFormat("yyyy-MM-dd").format(new Date(Long.parseLong(curso[i].getFecha_viaje().toString())))});
+                curso[i].getDestino_id().toString(),curso[i].getAnio().toString(),curso[i].getMonto_meta(),curso[i].getFecha_viaje().toString()});
                 
             }
             tablaListar.setModel(modelo);

@@ -812,5 +812,9 @@ public class ConnectAPI {
         
       }
       
+      //SEGUROS
+      
+      
+      
   
 }

@@ -1,4 +1,6 @@
 
+import java.awt.Desktop;
+import java.net.URL;
 import java.util.HashSet;
 
 /*
@@ -58,6 +60,7 @@ public class LoginAdmin extends javax.swing.JFrame {
         btn_CtaRol = new javax.swing.JButton();
         btn_servicios = new javax.swing.JButton();
         btn_Actividad = new javax.swing.JButton();
+        btnManual = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -114,7 +117,7 @@ public class LoginAdmin extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btn_Cancelar);
-        btn_Cancelar.setBounds(270, 283, 80, 30);
+        btn_Cancelar.setBounds(220, 280, 80, 30);
 
         btn_Region.setText("Mantenedor región");
         btn_Region.addActionListener(new java.awt.event.ActionListener() {
@@ -160,6 +163,15 @@ public class LoginAdmin extends javax.swing.JFrame {
         });
         jPanel1.add(btn_Actividad);
         btn_Actividad.setBounds(30, 260, 140, 30);
+
+        btnManual.setText("?");
+        btnManual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManualActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnManual);
+        btnManual.setBounds(330, 320, 50, 20);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/mmmm.png"))); // NOI18N
         jPanel1.add(jLabel2);
@@ -274,6 +286,16 @@ public class LoginAdmin extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btn_CtaRolActionPerformed
 
+    private void btnManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManualActionPerformed
+       try {
+                    Desktop.getDesktop().browse(new URL("http://res.cloudinary.com/dcjlyyzyj/image/upload/v1513044132/Manual_de_Usuario_Administrador_xqar6s.pdf").toURI());
+             } catch (Exception e) 
+               {
+                    e.printStackTrace();
+                }
+
+    }//GEN-LAST:event_btnManualActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -310,6 +332,7 @@ public class LoginAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnManual;
     private javax.swing.JButton btn_Actividad;
     private javax.swing.JButton btn_Alumno;
     private javax.swing.JButton btn_Cancelar;
