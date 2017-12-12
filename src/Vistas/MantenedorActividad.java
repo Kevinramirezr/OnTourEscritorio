@@ -1,10 +1,13 @@
+package Vistas;
 
+
+import Conexión.*;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
-import Clases.ConnectAPI;
+import Conexión.ConnectAPI;
 import Clases.Actividad;
 import com.google.gson.Gson;
 import java.sql.ResultSet;

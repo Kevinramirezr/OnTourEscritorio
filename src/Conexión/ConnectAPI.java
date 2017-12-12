@@ -3,14 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Clases;
+package Conexión;
 import java.io.*;
 import java.net.*;
 import javax.net.*;
 import com.google.gson.Gson;
 import Clases.Cuenta;
 import Clases.Actividad;
+import Clases.Actividad;
+import Clases.Alumno;
+import Clases.Cuenta;
+import Clases.Curso;
+import Clases.Deposito;
 import Clases.Destinos;
+import Clases.Destinos;
+import Clases.Escuela;
 import com.google.gson.*;
 
 

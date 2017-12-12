@@ -1,4 +1,8 @@
+package Vistas;
 
+
+
+import Conexión.*;
 import java.awt.Desktop;
 import java.net.URL;
 import java.util.HashSet;
@@ -321,6 +325,7 @@ public class LoginAdmin extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(LoginAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

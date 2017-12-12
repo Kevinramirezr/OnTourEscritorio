@@ -1,3 +1,5 @@
+package Vistas;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -8,7 +10,9 @@
  *
  * @author Ramirez
  */
-import Clases.ConnectAPI;
+
+import Conexión.*;
+import Conexión.ConnectAPI;
 import com.itextpdf.text.pdf.PdfStamper;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.Document;
@@ -602,6 +606,7 @@ public class Contrato extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Contrato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

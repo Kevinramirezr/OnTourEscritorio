@@ -1,5 +1,9 @@
+package Vistas;
 
-import Clases.ConnectAPI;
+
+
+import Conexión.*;
+import Conexión.ConnectAPI;
 import Clases.Deposito;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -262,6 +266,7 @@ public class ValidarPagos extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(ValidarPagos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

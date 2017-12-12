@@ -1,5 +1,9 @@
+package Vistas;
 
-import Clases.ConnectAPI;
+
+
+import Conexión.*;
+import Conexión.ConnectAPI;
 import Clases.Curso;
 import Clases.Destinos;
 import java.sql.CallableStatement;
@@ -586,6 +590,8 @@ public class MantenedorCurso extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(MantenedorCurso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 

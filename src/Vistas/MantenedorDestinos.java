@@ -1,5 +1,9 @@
+package Vistas;
 
-import Clases.ConnectAPI;
+
+
+import Conexión.*;
+import Conexión.ConnectAPI;
 import Clases.Destinos;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -427,6 +431,8 @@ public class MantenedorDestinos extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(MantenedorDestinos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 

@@ -1,5 +1,9 @@
+package Vistas;
+
+
+import Conexión.*;
 import Clases.Alumno;
-import Clases.ConnectAPI;
+import Conexión.ConnectAPI;
 import Clases.Curso;
 import java.sql.*;
 import javax.swing.JOptionPane;
@@ -548,6 +552,8 @@ public class MantenedorALumno extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(MantenedorALumno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 

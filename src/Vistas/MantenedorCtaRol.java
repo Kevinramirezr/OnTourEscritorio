@@ -1,28 +1,25 @@
+package Vistas;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import Conexión.*;
+
+import Clases.Alumno;
+import Conexión.ConnectAPI;
+import Clases.CtaRol;
+import Clases.Curso;
+import java.sql.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
+import org.apache.commons.lang3.exception.ExceptionUtils;
 /**
  *
  * @author Pixie
  */
-public class MantenedorServicios extends javax.swing.JFrame {
+public class MantenedorCtaRol extends javax.swing.JFrame {
 
     /**
-     * Creates new form Servicios
+     * Creates new form CtaRol
      */
-    public MantenedorServicios() {
+    public MantenedorCtaRol() {
         initComponents();
     }
 
@@ -37,47 +34,52 @@ public class MantenedorServicios extends javax.swing.JFrame {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
-        txtIdServicio = new javax.swing.JTextField();
-        txtNombreServicio = new javax.swing.JTextField();
+        lblNombreCta = new javax.swing.JLabel();
+        txtIdCta = new javax.swing.JTextField();
+        txtNombreCta = new javax.swing.JTextField();
         btnIngresar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        txtPrecio = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblIdCta = new javax.swing.JLabel();
         btn_Atras = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        btnEliminar = new javax.swing.JButton();
         cboEliminar = new javax.swing.JComboBox<>();
-        btnEliminarBuscar = new javax.swing.JButton();
+        btnElimnarBuscar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaEliminar = new javax.swing.JTable();
-        btnEliminar = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
         btnConsultar = new javax.swing.JButton();
         cboConsultar = new javax.swing.JComboBox<>();
         jScrollPane3 = new javax.swing.JScrollPane();
         tablaConsultar = new javax.swing.JTable();
-        jLabel9 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        btnListar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        btnListar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaListar = new javax.swing.JTable();
-        jLabel10 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(null);
 
-        txtIdServicio.setText(" ");
-        jPanel1.add(txtIdServicio);
-        txtIdServicio.setBounds(160, 40, 200, 20);
-        jPanel1.add(txtNombreServicio);
-        txtNombreServicio.setBounds(160, 90, 200, 20);
+        lblNombreCta.setForeground(new java.awt.Color(255, 255, 255));
+        lblNombreCta.setText("Nombre ROL:");
+        jPanel1.add(lblNombreCta);
+        lblNombreCta.setBounds(31, 69, 64, 14);
+
+        txtIdCta.setText(" ");
+        jPanel1.add(txtIdCta);
+        txtIdCta.setBounds(124, 28, 100, 20);
+
+        txtNombreCta.setText(" ");
+        jPanel1.add(txtNombreCta);
+        txtNombreCta.setBounds(124, 66, 100, 20);
 
         btnIngresar.setText("Ingresar");
         btnIngresar.addActionListener(new java.awt.event.ActionListener() {
@@ -86,7 +88,7 @@ public class MantenedorServicios extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnIngresar);
-        btnIngresar.setBounds(71, 178, 73, 23);
+        btnIngresar.setBounds(31, 130, 73, 23);
 
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -95,24 +97,12 @@ public class MantenedorServicios extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnCancelar);
-        btnCancelar.setBounds(162, 178, 75, 23);
-        jPanel1.add(txtPrecio);
-        txtPrecio.setBounds(160, 140, 200, 20);
+        btnCancelar.setBounds(122, 130, 75, 23);
 
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Precio:");
-        jPanel1.add(jLabel3);
-        jLabel3.setBounds(70, 140, 33, 14);
-
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("ID Servicio:");
-        jPanel1.add(jLabel1);
-        jLabel1.setBounds(70, 40, 55, 14);
-
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Nombre servicio:");
-        jPanel1.add(jLabel2);
-        jLabel2.setBounds(70, 90, 80, 14);
+        lblIdCta.setForeground(new java.awt.Color(255, 255, 255));
+        lblIdCta.setText("ROL ID:");
+        jPanel1.add(lblIdCta);
+        lblIdCta.setBounds(57, 31, 38, 14);
 
         btn_Atras.setText("Atrás");
         btn_Atras.addActionListener(new java.awt.event.ActionListener() {
@@ -121,20 +111,29 @@ public class MantenedorServicios extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btn_Atras);
-        btn_Atras.setBounds(255, 178, 59, 23);
+        btn_Atras.setBounds(215, 130, 59, 23);
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/mmmm.png"))); // NOI18N
-        jPanel1.add(jLabel7);
-        jLabel7.setBounds(0, 0, 400, 230);
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/mmmm.png"))); // NOI18N
+        jPanel1.add(jLabel4);
+        jLabel4.setBounds(0, 0, 330, 230);
 
-        jTabbedPane1.addTab("Ingresar", jPanel1);
+        jTabbedPane1.addTab("Insertar", jPanel1);
 
         jPanel2.setLayout(null);
 
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("ID Servicio:");
-        jPanel2.add(jLabel4);
-        jLabel4.setBounds(46, 20, 55, 14);
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("ROL ID");
+        jPanel2.add(jLabel1);
+        jLabel1.setBounds(62, 29, 34, 14);
+
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnEliminar);
+        btnEliminar.setBounds(141, 148, 69, 23);
 
         cboEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -142,16 +141,16 @@ public class MantenedorServicios extends javax.swing.JFrame {
             }
         });
         jPanel2.add(cboEliminar);
-        cboEliminar.setBounds(119, 17, 71, 20);
+        cboEliminar.setBounds(106, 26, 96, 20);
 
-        btnEliminarBuscar.setText("Buscar");
-        btnEliminarBuscar.addActionListener(new java.awt.event.ActionListener() {
+        btnElimnarBuscar.setText("BUSCAR");
+        btnElimnarBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarBuscarActionPerformed(evt);
+                btnElimnarBuscarActionPerformed(evt);
             }
         });
-        jPanel2.add(btnEliminarBuscar);
-        btnEliminarBuscar.setBounds(208, 16, 65, 23);
+        jPanel2.add(btnElimnarBuscar);
+        btnElimnarBuscar.setBounds(220, 25, 73, 23);
 
         tablaEliminar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -167,29 +166,20 @@ public class MantenedorServicios extends javax.swing.JFrame {
         jScrollPane2.setViewportView(tablaEliminar);
 
         jPanel2.add(jScrollPane2);
-        jScrollPane2.setBounds(10, 57, 375, 108);
+        jScrollPane2.setBounds(53, 54, 240, 64);
 
-        btnEliminar.setText("Eliminar");
-        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnEliminar);
-        btnEliminar.setBounds(155, 179, 69, 23);
-
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/mmmm.png"))); // NOI18N
-        jPanel2.add(jLabel8);
-        jLabel8.setBounds(0, 0, 400, 230);
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/mmmm.png"))); // NOI18N
+        jPanel2.add(jLabel5);
+        jLabel5.setBounds(0, 0, 330, 230);
 
         jTabbedPane1.addTab("Eliminar", jPanel2);
 
         jPanel3.setLayout(null);
 
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("ID Servicio:");
-        jPanel3.add(jLabel5);
-        jLabel5.setBounds(52, 27, 55, 14);
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("ROL ID:");
+        jPanel3.add(jLabel2);
+        jLabel2.setBounds(56, 19, 38, 14);
 
         btnConsultar.setText("Consultar");
         btnConsultar.addActionListener(new java.awt.event.ActionListener() {
@@ -198,7 +188,7 @@ public class MantenedorServicios extends javax.swing.JFrame {
             }
         });
         jPanel3.add(btnConsultar);
-        btnConsultar.setBounds(264, 23, 79, 23);
+        btnConsultar.setBounds(204, 15, 79, 23);
 
         cboConsultar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -206,7 +196,7 @@ public class MantenedorServicios extends javax.swing.JFrame {
             }
         });
         jPanel3.add(cboConsultar);
-        cboConsultar.setBounds(134, 24, 88, 20);
+        cboConsultar.setBounds(112, 16, 86, 20);
 
         tablaConsultar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -222,29 +212,29 @@ public class MantenedorServicios extends javax.swing.JFrame {
         jScrollPane3.setViewportView(tablaConsultar);
 
         jPanel3.add(jScrollPane3);
-        jScrollPane3.setBounds(10, 57, 375, 99);
+        jScrollPane3.setBounds(20, 50, 273, 102);
 
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/mmmm.png"))); // NOI18N
-        jPanel3.add(jLabel9);
-        jLabel9.setBounds(0, 0, 400, 230);
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/mmmm.png"))); // NOI18N
+        jPanel3.add(jLabel6);
+        jLabel6.setBounds(0, 0, 330, 230);
 
         jTabbedPane1.addTab("Consultar", jPanel3);
 
         jPanel4.setLayout(null);
 
-        btnListar.setText("Listar");
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("LISTAR ROL:");
+        jPanel4.add(jLabel3);
+        jLabel3.setBounds(81, 38, 62, 14);
+
+        btnListar.setText("LISTAR");
         btnListar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnListarActionPerformed(evt);
             }
         });
         jPanel4.add(btnListar);
-        btnListar.setBounds(194, 27, 59, 23);
-
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("LISTAR SERVICIOS");
-        jPanel4.add(jLabel6);
-        jLabel6.setBounds(63, 31, 92, 14);
+        btnListar.setBounds(176, 34, 67, 23);
 
         tablaListar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -257,11 +247,11 @@ public class MantenedorServicios extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tablaListar);
 
         jPanel4.add(jScrollPane1);
-        jScrollPane1.setBounds(10, 68, 375, 148);
+        jScrollPane1.setBounds(58, 75, 216, 110);
 
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/mmmm.png"))); // NOI18N
-        jPanel4.add(jLabel10);
-        jLabel10.setBounds(0, 0, 400, 230);
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/mmmm.png"))); // NOI18N
+        jPanel4.add(jLabel7);
+        jLabel7.setBounds(0, 0, 330, 230);
 
         jTabbedPane1.addTab("Listar", jPanel4);
 
@@ -269,42 +259,45 @@ public class MantenedorServicios extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        // TODO add your handling code here:
-       
-            try {
-        DriverManager.registerDriver(new oracle.jdbc.OracleDriver());
-        Connection conn= DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","orc");
-    //Inserción de datos a bd SIN PAQUETES           
-        PreparedStatement ps= conn.prepareStatement("INSERT INTO servicio values(?,?,?)");
-
-        ps.setString(1,txtIdServicio.getText());
-        ps.setString(2,txtNombreServicio.getText());
-        ps.setString(3,txtPrecio.getText());        
-        ps.executeUpdate();
-        //Confirmación de inserción de datos
-        JOptionPane.showMessageDialog(null, "Datos insertados existosamente");
-        conn.close();
-        ps.close();
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(null, e);
-    }
-        
+     try{
+            DriverManager.registerDriver(new oracle.jdbc.OracleDriver());
+            Connection conn= DriverManager.getConnection("jdbc:oracle:thin:@165.227.213.232:1521:dbportafolio","C##_equipo2","portafolio02");
+             PreparedStatement ps= conn.prepareStatement("INSERT INTO cuenta_rol values(?,?)");
+             ps.setString(1, txtIdCta.getText().trim());
+             ps.setString(2, txtNombreCta.getText().trim());
+             
+             ps.executeUpdate();
+             JOptionPane.showMessageDialog(null, "Datos insertados existosamente");
+              conn.close();
+              ps.close();
+             
+     }catch(Exception e)
+     {
+         String msj = ExceptionUtils.getStackTrace(e);
+         JOptionPane.showMessageDialog(null, msj);
+         e.printStackTrace();
+     }
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
-        System.exit(0);
+         System.exit(0);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btn_AtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AtrasActionPerformed
@@ -318,11 +311,11 @@ public class MantenedorServicios extends javax.swing.JFrame {
             DriverManager.registerDriver(new oracle.jdbc.OracleDriver());
             Connection conn= DriverManager.getConnection("jdbc:oracle:thin:@165.227.213.232:1521:dbportafolio","C##_equipo2","portafolio02");
             Statement sent = conn.createStatement();
-            ResultSet rs = sent.executeQuery("Select servicio_id from servicio");
+            ResultSet rs = sent.executeQuery("Select rol_id from cuenta_rol");
             while(rs.next())
             {
                 
-                this.cboEliminar.addItem(rs.getString("servicio_id"));
+                this.cboEliminar.addItem(rs.getString("rol_id"));
             }
             conn.close();
         }catch (Exception e) {
@@ -330,51 +323,19 @@ public class MantenedorServicios extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cboEliminarMouseClicked
 
-    private void cboConsultarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboConsultarMouseClicked
-       try{
-            DriverManager.registerDriver(new oracle.jdbc.OracleDriver());
-            Connection conn= DriverManager.getConnection("jdbc:oracle:thin:@165.227.213.232:1521:dbportafolio","C##_equipo2","portafolio02");
-            Statement sent = conn.createStatement();
-            ResultSet rs = sent.executeQuery("Select servicio_id from servicio");
-            while(rs.next())
-            {
-                
-                this.cboConsultar.addItem(rs.getString("servicio_id"));
-            }
-            conn.close();
-        }catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
-    }//GEN-LAST:event_cboConsultarMouseClicked
-
-    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        try{
-           String servicio_id = cboEliminar.getSelectedItem().toString().trim();
-           DriverManager.registerDriver(new oracle.jdbc.OracleDriver());
-           Connection conn= DriverManager.getConnection("jdbc:oracle:thin:@165.227.213.232:1521:dbportafolio","C##_equipo2","portafolio02");
-           Statement sent = conn.createStatement();
-           ResultSet rs = sent.executeQuery("delete from servicio where servicio_id='"+servicio_id+"'");
-           JOptionPane.showMessageDialog(null, "Servicio Eliminado existosamente");
-           conn.close();
-        }catch(Exception e)
-        {
-            JOptionPane.showMessageDialog(null,e);
-        }
-    }//GEN-LAST:event_btnEliminarActionPerformed
-
-    private void btnEliminarBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarBuscarActionPerformed
+    private void btnElimnarBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnElimnarBuscarActionPerformed
         DefaultTableModel modelo = new DefaultTableModel();
 
-        String servicio_id = cboEliminar.getSelectedItem().toString().trim().toLowerCase();
+        String id = cboEliminar.getSelectedItem().toString().trim().toLowerCase();
         try{
-            modelo.setColumnIdentifiers(new Object[]{"servicio_id","descriocion","precio"});
+            modelo.setColumnIdentifiers(new Object[]{"rol_id","rol_nombre"});
             DriverManager.registerDriver(new oracle.jdbc.OracleDriver());
             Connection conn= DriverManager.getConnection("jdbc:oracle:thin:@165.227.213.232:1521:dbportafolio","C##_equipo2","portafolio02");
             Statement sent = conn.createStatement();
-            ResultSet rs = sent.executeQuery("Select * from servicio where servicio_id='"+servicio_id+"'");
+            ResultSet rs = sent.executeQuery("Select * from cuenta_rol where rol_id='"+id+"'");
             while(rs.next())
             {
-               modelo.addRow(new Object[]{rs.getString("servicio_id"),rs.getString("descricion"),rs.getString("precio")});
+               modelo.addRow(new Object[]{rs.getString("rol_id"),rs.getString("rol_nombre")});
             }
             tablaEliminar.setModel(modelo);
             conn.close();
@@ -382,22 +343,55 @@ public class MantenedorServicios extends javax.swing.JFrame {
         {
             e.printStackTrace();
         }
+    }//GEN-LAST:event_btnElimnarBuscarActionPerformed
 
-    }//GEN-LAST:event_btnEliminarBuscarActionPerformed
-
-    private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
-        DefaultTableModel modelo = new DefaultTableModel();
-
-        String servicio_id = cboConsultar.getSelectedItem().toString().trim().toLowerCase();
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         try{
-            modelo.setColumnIdentifiers(new Object[]{"servicio_id","descripcion","precio"});
+           String rol_id = cboEliminar.getSelectedItem().toString().trim();
+           DriverManager.registerDriver(new oracle.jdbc.OracleDriver());
+           Connection conn= DriverManager.getConnection("jdbc:oracle:thin:@165.227.213.232:1521:dbportafolio","C##_equipo2","portafolio02");
+           Statement sent = conn.createStatement();
+           ResultSet rs = sent.executeQuery("delete from cuenta_rol where rol_id='"+rol_id+"'");
+           JOptionPane.showMessageDialog(null, "ROL Eliminado existosamente");
+           conn.close();
+        }catch(Exception e)
+        {
+            String msj = ExceptionUtils.getStackTrace(e);
+            JOptionPane.showMessageDialog(null, msj);
+            JOptionPane.showMessageDialog(null,e);
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void cboConsultarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboConsultarMouseClicked
+         try{
             DriverManager.registerDriver(new oracle.jdbc.OracleDriver());
             Connection conn= DriverManager.getConnection("jdbc:oracle:thin:@165.227.213.232:1521:dbportafolio","C##_equipo2","portafolio02");
             Statement sent = conn.createStatement();
-            ResultSet rs = sent.executeQuery("Select * from servicio where servicio_id='"+servicio_id+"'");
+            ResultSet rs = sent.executeQuery("Select rol_id from cuenta_rol");
             while(rs.next())
             {
-               modelo.addRow(new Object[]{rs.getString("servicio_id"),rs.getString("descripcion"),rs.getString("precio")});
+                
+                this.cboConsultar.addItem(rs.getString("rol_id"));
+            }
+            conn.close();
+        }catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_cboConsultarMouseClicked
+
+    private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
+       DefaultTableModel modelo = new DefaultTableModel();
+
+        String id = cboConsultar.getSelectedItem().toString().trim().toLowerCase();
+        try{
+            modelo.setColumnIdentifiers(new Object[]{"rol_id","rol_nombre"});
+            DriverManager.registerDriver(new oracle.jdbc.OracleDriver());
+            Connection conn= DriverManager.getConnection("jdbc:oracle:thin:@165.227.213.232:1521:dbportafolio","C##_equipo2","portafolio02");
+            Statement sent = conn.createStatement();
+            ResultSet rs = sent.executeQuery("Select * from cuenta_rol where rol_id='"+id+"'");
+            while(rs.next())
+            {
+               modelo.addRow(new Object[]{rs.getString("rol_id"),rs.getString("rol_nombre")});
             }
             tablaConsultar.setModel(modelo);
             conn.close();
@@ -409,17 +403,16 @@ public class MantenedorServicios extends javax.swing.JFrame {
 
     private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
         // TODO add your handling code here:
-        
         DefaultTableModel modelo = new DefaultTableModel();
         try{
            DriverManager.registerDriver(new oracle.jdbc.OracleDriver());
            Connection conn= DriverManager.getConnection("jdbc:oracle:thin:@165.227.213.232:1521:dbportafolio","C##_equipo2","portafolio02");
            Statement sent = conn.createStatement();
-           ResultSet rs = sent.executeQuery("Select * from servicio");
-           modelo.setColumnIdentifiers(new Object[]{"servicio_id","descripcion","precio"});
+           ResultSet rs = sent.executeQuery("Select * from cuenta_rol");
+           modelo.setColumnIdentifiers(new Object[]{"rol_id","rol_nombre"});
             while(rs.next())
            {
-              modelo.addRow(new Object[]{rs.getString("servicio_id"),rs.getString("descripcion"),rs.getString("precio")});
+               modelo.addRow(new Object[]{rs.getString("rol_id"),rs.getString("rol_nombre")});
            }
           
            tablaListar.setModel(modelo);
@@ -428,6 +421,7 @@ public class MantenedorServicios extends javax.swing.JFrame {
         {
             e.printStackTrace();
         }
+        
     }//GEN-LAST:event_btnListarActionPerformed
 
     /**
@@ -447,21 +441,35 @@ public class MantenedorServicios extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MantenedorServicios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MantenedorCtaRol.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MantenedorServicios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MantenedorCtaRol.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MantenedorServicios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MantenedorCtaRol.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MantenedorServicios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MantenedorCtaRol.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MantenedorServicios().setVisible(true);
+                new MantenedorCtaRol().setVisible(true);
             }
         });
     }
@@ -470,22 +478,19 @@ public class MantenedorServicios extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnConsultar;
     private javax.swing.JButton btnEliminar;
-    private javax.swing.JButton btnEliminarBuscar;
+    private javax.swing.JButton btnElimnarBuscar;
     private javax.swing.JButton btnIngresar;
     private javax.swing.JButton btnListar;
     private javax.swing.JButton btn_Atras;
     private javax.swing.JComboBox<String> cboConsultar;
     private javax.swing.JComboBox<String> cboEliminar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -494,11 +499,12 @@ public class MantenedorServicios extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel lblIdCta;
+    private javax.swing.JLabel lblNombreCta;
     private javax.swing.JTable tablaConsultar;
     private javax.swing.JTable tablaEliminar;
     private javax.swing.JTable tablaListar;
-    private javax.swing.JTextField txtIdServicio;
-    private javax.swing.JTextField txtNombreServicio;
-    private javax.swing.JTextField txtPrecio;
+    private javax.swing.JTextField txtIdCta;
+    private javax.swing.JTextField txtNombreCta;
     // End of variables declaration//GEN-END:variables
 }

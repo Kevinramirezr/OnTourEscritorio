@@ -1,5 +1,9 @@
+package Vistas;
 
-import Clases.ConnectAPI;
+
+
+import Conexión.*;
+import Conexión.ConnectAPI;
 import Clases.Cuenta;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -192,6 +196,7 @@ public class Login extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
