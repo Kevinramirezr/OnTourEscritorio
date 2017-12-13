@@ -285,20 +285,22 @@ public class MantenedorServicios extends javax.swing.JFrame {
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         // TODO add your handling code here:
        
-            try {
-        DriverManager.registerDriver(new oracle.jdbc.OracleDriver());
-        Connection conn= DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","orc");
-    //Inserción de datos a bd SIN PAQUETES           
-        PreparedStatement ps= conn.prepareStatement("INSERT INTO servicio values(?,?,?)");
+        try {
+      
+            DriverManager.registerDriver(new oracle.jdbc.OracleDriver());
+            Connection conn= DriverManager.getConnection("dbc:oracle:thin:@165.227.213.232:1521:dbportafolio","C##_equipo2","portafolio02");
+            //Inserción de datos a bd SIN PAQUETES           
+            PreparedStatement ps= conn.prepareStatement("INSERT INTO servicio values(?,?,?)");
 
-        ps.setString(1,txtIdServicio.getText());
-        ps.setString(2,txtNombreServicio.getText());
-        ps.setString(3,txtPrecio.getText());        
-        ps.executeUpdate();
-        //Confirmación de inserción de datos
-        JOptionPane.showMessageDialog(null, "Datos insertados existosamente");
-        conn.close();
-        ps.close();
+            ps.setString(1,txtIdServicio.getText());
+            ps.setString(2,txtNombreServicio.getText());
+            ps.setString(3,txtPrecio.getText());        
+            ps.executeUpdate();
+           //Confirmación de inserción de datos
+           JOptionPane.showMessageDialog(null, "Datos insertados existosamente");
+           conn.close();
+           ps.close();
+               
     } catch (Exception e) {
         JOptionPane.showMessageDialog(null, e);
     }
